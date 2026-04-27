@@ -14,7 +14,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	//
 	//
 	
-	aspect Iec60320C13Interface < base:Joined [
+	aspect Iec60320C13Interface < base:Presenting, base:Presented, base:Joined [
 		restricts all base:isJoinedBy to Iec60320C13Junction		
 	]
 	

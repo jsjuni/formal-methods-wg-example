@@ -7,6 +7,6 @@ description bundle <http://opencaesar.io/formal-methods-wg-example/description/b
 
 	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/bundle#>
 	
-	includes <http://opencaesar.io/formal-methods-wg-example/description/description1#>
+	includes <http://opencaesar.io/formal-methods-wg-example/description/router#>
 
 }

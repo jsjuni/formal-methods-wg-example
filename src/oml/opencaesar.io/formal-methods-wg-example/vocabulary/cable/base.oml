@@ -1,0 +1,43 @@
+@dc:title "Example Vocabulary"
+@dc:creator "Example Company"
+@dc:rights "Copyright 2019, by Example Company"
+vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/cable/base#> as cable {
+	
+	extends <http://purl.org/dc/elements/1.1/> as dc
+	extends <http://www.w3.org/2001/XMLSchema#> as xsd
+	
+	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as base
+	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/base#> as mechanical
+	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/iec-60320-c13#> as iec-60320-c13
+	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/rj-45#> as rj-45
+	
+	//
+	//
+	// Has Component Type
+	//
+	//
+	
+	aspect ComponentTyped
+	
+	scalar property hasComponentType [
+		domain ComponentTyped
+		range xsd:string
+		functional
+	]
+	
+	aspect Cable < ComponentTyped [
+		restricts base:hasComponentType to "cable"
+		restricts all base:presents to mechanical:Interface
+	]
+	
+	concept PowerCable < ComponentTyped, base:Component [
+		restricts hasComponentType to "power"
+		restricts all base:presents to iec-60320-c13:Iec60320C13Interface
+	]
+	
+	concept Cat6eCable < ComponentTyped, base:Component [
+		restricts hasComponentType to "ethernet-cable"
+		restricts all base:presents to rj-45:Rj45Interface
+	]
+	
+}

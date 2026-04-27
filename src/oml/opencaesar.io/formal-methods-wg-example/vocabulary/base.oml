@@ -86,6 +86,12 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as 
 		hasType(e, "component") -> Component(e)
 	]
 	
+	scalar property hasComponentType [
+		domain Component
+		range xsd:string
+		functional
+	]
+	
 	//
 	//
 	// Interface

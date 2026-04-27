@@ -1,0 +1,14 @@
+@dc:title "Example Vocabulary"
+@dc:creator "Example Company"
+@dc:rights "Copyright 2019, by Example Company"
+vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/router/base#> as router {
+	
+	extends <http://purl.org/dc/elements/1.1/> as dc
+	
+	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as base
+	
+	concept Router < base:Component [
+		restricts base:hasComponentType to "router"
+	]
+	
+}
