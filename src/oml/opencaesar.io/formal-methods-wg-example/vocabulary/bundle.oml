@@ -1,0 +1,16 @@
+@dc:title "Example Vocabulary Bundle"
+@dc:creator "Example Company"
+@dc:rights "Copyright 2019, by Example Company"
+vocabulary bundle <http://opencaesar.io/formal-methods-wg-example/vocabulary/bundle#> as vocabulary-bundle {
+		
+	includes <http://purl.org/dc/elements/1.1/> as dc	
+
+	includes <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#>
+
+	includes <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/base#>
+
+	includes <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/base#>
+	includes <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/iec-60320-c13#>
+	includes <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/rj-45#>
+
+}

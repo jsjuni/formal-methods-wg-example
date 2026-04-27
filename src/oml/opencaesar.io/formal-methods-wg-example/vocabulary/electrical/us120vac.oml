@@ -1,0 +1,83 @@
+@dc:title "Example Vocabulary"
+@dc:creator "Example Company"
+@dc:rights "Copyright 2019, by Example Company"
+vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/us120vac#> as us120vac {
+	
+	extends <http://purl.org/dc/elements/1.1/> as dc
+	
+	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as base
+	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/base#> as electrical
+	
+	//
+	//
+	// Us120Vac Interface
+	//
+	//
+	
+	aspect Us120VacInterface < base:Joined [
+		restricts all base:is_joined_by to Us120VacJunction		
+	]
+	
+	//
+	//
+	// Us120Vac Plug
+	//
+	//
+	
+	concept Us120VacLoad < electrical:Interface, Us120VacInterface [
+		restricts electrical:has_interface_type to "us-120vac-load"
+	]
+	
+	rule us_120vac_load_interface_type [
+		electrical:has_interface_type(e, "us-120vac-load") -> Us120VacLoad(e)
+	]
+	
+	//
+	//
+	// Us120Vac Socket
+	//
+	//
+	
+	concept Us120VacSource < electrical:Interface, Us120VacInterface [
+		restricts electrical:has_interface_type to "us-120vac-source"
+	]
+	
+	rule us_120vac_source_interface_type [
+		electrical:has_interface_type(e, "us-120vac-source") -> Us120VacSource(e)
+	]
+	
+	//
+	//
+	// Us120Vac Junction
+	//
+	//
+	
+	concept Us120VacJunction < electrical:Junction [
+		restricts electrical:has_junction_type to "us-120vac"
+		restricts all base:joins to Us120VacInterface
+		restricts base:joins to max 2 Us120VacInterface
+		restricts some base:joins to Us120VacLoad
+		restricts some base:joins to Us120VacSource
+	]
+	
+	rule us_120vac_junction_type [
+		electrical:has_junction_type(e, "us-120vac") -> Us120VacJunction(e)
+	]
+	
+	rule us_120vac_conjugates_1 [
+		Us120VacJunction(j) &
+		base:joins(j, p) &
+		base:joins(j, s) &
+		Us120VacLoad(p) ->
+		Us120VacSource(s)
+	]
+	
+	rule us_120vac_conjugates_2 [
+		Us120VacJunction(j) &
+		base:joins(j, p) &
+		base:joins(j, s) &
+		Us120VacSource(s) ->
+		Us120VacLoad(p)
+	]
+	
+}

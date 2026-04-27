@@ -1,8 +1,8 @@
-# OML Template
+# formal-methods-wg-example
 
-[![Build Status](https://github.com/opencaesar/oml-template/actions/workflows/ci.yml/badge.svg)](https://github.com/opencaesar/oml-template/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/opencaesar/oml-template?label=Release)](https://github.com/opencaesar/oml-template/releases/latest)
-[![Documentation](https://img.shields.io/badge/Documentation-HTML-orange)](https://www.opencaesar.io/oml-template/) 
+[![Build Status](https://github.com/opencaesar/formal-methods-wg-example/actions/workflows/ci.yml/badge.svg)](https://github.com/opencaesar/formal-methods-wg-example/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/opencaesar/formal-methods-wg-example?label=Release)](https://github.com/opencaesar/formal-methods-wg-example/releases/latest)
+[![Documentation](https://img.shields.io/badge/Documentation-HTML-orange)](https://www.opencaesar.io/formal-methods-wg-example/) 
 
 This repository has a template [OML](https://github.com/opencaesar/oml) project. It is meant to be forked as a starting point by pressing the 'Use this template' button above.
 
@@ -10,8 +10,8 @@ This repository has a template [OML](https://github.com/opencaesar/oml) project.
 
 ## Clone
 ```
-  git clone https://github.com/opencaesar/oml-template.git
-  cd oml-template
+  git clone https://github.com/opencaesar/formal-methods-wg-example.git
+  cd formal-methods-wg-example
 ```
 
 ## Build
@@ -92,12 +92,12 @@ Publish the OML dataset as an archive in the local maven repo
 Inspect the OML archive
 
 ```
-ls ~/.m2/repository/io/opencaesar/oml-template
+ls ~/.m2/repository/io/opencaesar/formal-methods-wg-example
 ```
 
 ## Customize Template
 
-The name of this project is `oml-template`. You can change it to your own project name. The easiest way to do this is to look for the word `template` in this repo and replace it. The files that need to be changes include:
+The name of this project is `formal-methods-wg-example`. You can change it to your own project name. The easiest way to do this is to look for the word `template` in this repo and replace it. The files that need to be changes include:
 
 - `.project` (name)
 - `.catalog.xml` (first rewriteURI)

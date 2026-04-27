@@ -1,0 +1,62 @@
+@dc:title "Example Vocabulary"
+@dc:creator "Example Company"
+@dc:rights "Copyright 2019, by Example Company"
+vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/base#> as electrical {
+	
+	extends <http://purl.org/dc/elements/1.1/> as dc
+	extends <http://www.w3.org/2001/XMLSchema#> as xsd
+	
+	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as base
+	
+	//
+	//
+	// Has Interface Type
+	//
+	//
+	
+	aspect InterfaceTyped
+	
+	scalar property has_interface_type [
+		domain InterfaceTyped
+		range xsd:string
+		functional
+	]
+	
+	//
+	//
+	// Electrical Interface
+	//
+	//
+	
+	concept Interface < base:Interface, InterfaceTyped [
+		restricts base:has_interface_type to "electrical"
+		restricts all base:is_joined_by to Junction
+	]
+	
+	rule electrical_interface_type [
+		base:has_interface_type(e, "electrical") -> Interface(e)
+	]
+	
+	//
+	//
+	// Has Junction Type
+	//
+	//
+	
+	aspect JunctionTyped
+	
+	scalar property has_junction_type [
+		domain JunctionTyped
+		range xsd:string
+		functional
+	]
+	
+	concept Junction < base:Junction, JunctionTyped [
+		restricts base:has_junction_type to "electrical"
+		restricts all base:joins to Interface
+	]
+	
+	rule electrical_junction_type [
+		base:has_junction_type(e, "electrical") -> Junction(e)
+	]
+}

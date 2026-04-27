@@ -1,0 +1,83 @@
+@dc:title "Example Vocabulary"
+@dc:creator "Example Company"
+@dc:rights "Copyright 2019, by Example Company"
+vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/rj-45#> as rj-45 {
+	
+	extends <http://purl.org/dc/elements/1.1/> as dc
+	
+	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as base
+	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/base#> as mechanical
+	
+	//
+	//
+	// Rj45 Interface
+	//
+	//
+	
+	aspect Rj45Interface < base:Joined [
+		restricts all base:is_joined_by to Rj45Junction		
+	]
+	
+	//
+	//
+	// Rj45 Plug
+	//
+	//
+	
+	concept Rj45Male < mechanical:Interface, Rj45Interface [
+		restricts mechanical:has_interface_type to "rj-45-male"
+	]
+	
+	rule rj_45_male_interface_type [
+		mechanical:has_interface_type(e, "rj-45-male") -> Rj45Male(e)
+	]
+	
+	//
+	//
+	// Rj45 Socket
+	//
+	//
+	
+	concept Rj45Female < mechanical:Interface, Rj45Interface [
+		restricts mechanical:has_interface_type to "rj-45-female"
+	]
+	
+	rule rj_45_female_interface_type [
+		mechanical:has_interface_type(e, "rj-45-female") -> Rj45Female(e)
+	]
+	
+	//
+	//
+	// Rj45 Junction
+	//
+	//
+	
+	concept Rj45Junction < mechanical:Junction [
+		restricts mechanical:has_junction_type to "rj-45"
+		restricts all base:joins to Rj45Interface
+		restricts base:joins to max 2 Rj45Interface
+		restricts some base:joins to Rj45Male
+		restricts some base:joins to Rj45Female
+	]
+	
+	rule rj_45_junction_type [
+		mechanical:has_junction_type(e, "rj-45") -> Rj45Junction(e)
+	]
+	
+	rule c13-conjugates-1 [
+		Rj45Junction(j) &
+		base:joins(j, p) &
+		base:joins(j, s) &
+		Rj45Male(p) ->
+		Rj45Female(s)
+	]
+	
+	rule c13-conjugates-2 [
+		Rj45Junction(j) &
+		base:joins(j, p) &
+		base:joins(j, s) &
+		Rj45Female(s) ->
+		Rj45Male(p)
+	]
+	
+}

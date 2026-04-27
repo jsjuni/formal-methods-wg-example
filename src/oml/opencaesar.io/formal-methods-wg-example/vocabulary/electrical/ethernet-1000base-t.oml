@@ -1,0 +1,42 @@
+@dc:title "Example Vocabulary"
+@dc:creator "Example Company"
+@dc:rights "Copyright 2019, by Example Company"
+vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/ethernet-1000base-t#> as ethernet-1000base-t {
+	
+	extends <http://purl.org/dc/elements/1.1/> as dc
+	
+	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as base
+	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/base#> as electrical
+	
+	//
+	//
+	// Ethernet1000BaseT Interface
+	//
+	//
+	
+	concept Ethernet1000BaseTInterface < electrical:Interface [
+		restricts electrical:has_interface_type to "ethernet-1000base-t"
+		restricts all base:is_joined_by to Ethernet1000BaseTJunction		
+	]
+		
+	rule ethernet_1000base_t_interface_type [
+		electrical:has_interface_type(e, "ethernet-1000base-t") -> Ethernet1000BaseTInterface(e)
+	]
+	
+	//
+	//
+	// Ethernet1000BaseT Junction
+	//
+	//
+	
+	concept Ethernet1000BaseTJunction < electrical:Junction [
+		restricts electrical:has_junction_type to "ethernet-1000base-t"
+		restricts all base:joins to Ethernet1000BaseTInterface
+		restricts base:joins to max 2 Ethernet1000BaseTInterface
+	]
+		
+	rule ethernet_1000base_t_junction_type [
+		electrical:has_junction_type(e, "ethernet-1000base-t") -> Ethernet1000BaseTJunction(e)
+	]
+	
+}

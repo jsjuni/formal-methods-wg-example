@@ -1,0 +1,133 @@
+@dc:title "Example Vocabulary"
+@dc:creator "Example Company"
+@dc:rights "Copyright 2019, by Example Company"
+vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as base {
+	
+	extends <http://purl.org/dc/elements/1.1/> as dc
+	extends <http://www.w3.org/2001/XMLSchema#> as xsd
+	
+	//
+	//
+	// Has Name
+	//
+	//
+	
+	aspect Named
+	
+	scalar property has_name [
+		domain Named
+		range xsd:string
+		functional
+	]
+	
+	//
+	//
+	// Has Type
+	//
+	//
+	
+	aspect Typed
+	
+	scalar property has_type [
+		domain Typed
+		range xsd:string
+		functional
+	]
+	
+	//
+	//
+	// Presents
+	//
+	//
+	
+	aspect Presenting
+	
+	aspect Presented
+	
+	relation entity Presents [
+		from Presenting
+		to Presented
+		forward presents
+		reverse is_presented_by
+		inverse functional
+	]
+
+	//
+	//
+	// Joins
+	//
+	//
+	
+	aspect Joining
+	
+	aspect Joined
+	
+	relation entity Joins [
+		from Joining
+		to Joined
+		forward joins
+		reverse is_joined_by
+		inverse functional
+	]
+	
+	//
+	//
+	// Component
+	//
+	//
+	
+	concept Component [
+		key has_name
+	] < Named, Typed, Presenting [
+		restricts has_type to "component"
+	]
+	
+	rule component_type [
+		has_type(e, "component") -> Component(e)
+	]
+	
+	//
+	//
+	// Interface
+	//
+	//
+	
+	concept Interface [
+		key has_name
+	] < Named, Typed, Presenting, Presented, Joined [
+		restricts has_type to "interface"
+	]
+	
+	rule interface_type [
+		has_type(e, "interface") -> Interface(e)
+	]
+	
+	scalar property has_interface_type [
+		domain Interface
+		range xsd:string
+		functional
+	]
+	
+	//
+	//
+	// Junction
+	//
+	//
+	
+	concept Junction [
+		key has_name
+	] < Named, Typed, Joining [
+		restricts has_type to "junction"
+	]
+	
+	rule junction_type [
+		has_type(e, "junction") -> Junction(e)
+	]
+	
+	scalar property has_junction_type [
+		domain Junction
+		range xsd:string
+		functional
+	]
+	
+}

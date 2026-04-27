@@ -1,7 +1,7 @@
 # Project's properties
 project:
-   title: Oml Template
-   description: This is the OML project template
+   title: Formal Methods Working Group Example
+   description: Entailments demonstration for SysmL v2 FMWG
    group: io.opencaesar
    version: 0.1.0
 
@@ -15,9 +15,9 @@ dependencies:
 
 # Project's datasets
 datasets:
-   example: # configured in fuseki.ttl
-      label: Oml Example Dataset
+   formal-methods-wg-example: # configured in fuseki.ttl
+      label: Formal Methods Working Group Example
       description: This is an OML example dataset
-      iri: http://opencaesar.io/example/description/bundle
+      iri: http://opencaesar.io/formal-methods-wg-example/description/bundle
       sources: [ 'src/oml' ]
       queries: src/sparql
