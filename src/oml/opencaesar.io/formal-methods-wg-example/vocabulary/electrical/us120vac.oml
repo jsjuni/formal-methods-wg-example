@@ -15,7 +15,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	//
 	
 	aspect Us120VacInterface < base:Joined [
-		restricts all base:is_joined_by to Us120VacJunction		
+		restricts all base:isJoinedBy to Us120VacJunction		
 	]
 	
 	//
@@ -25,11 +25,11 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	//
 	
 	concept Us120VacLoad < electrical:Interface, Us120VacInterface [
-		restricts electrical:has_interface_type to "us-120vac-load"
+		restricts electrical:hasInterfaceType to "us-120vac-load"
 	]
 	
 	rule us_120vac_load_interface_type [
-		electrical:has_interface_type(e, "us-120vac-load") -> Us120VacLoad(e)
+		electrical:hasInterfaceType(e, "us-120vac-load") -> Us120VacLoad(e)
 	]
 	
 	//
@@ -39,11 +39,11 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	//
 	
 	concept Us120VacSource < electrical:Interface, Us120VacInterface [
-		restricts electrical:has_interface_type to "us-120vac-source"
+		restricts electrical:hasInterfaceType to "us-120vac-source"
 	]
 	
 	rule us_120vac_source_interface_type [
-		electrical:has_interface_type(e, "us-120vac-source") -> Us120VacSource(e)
+		electrical:hasInterfaceType(e, "us-120vac-source") -> Us120VacSource(e)
 	]
 	
 	//
@@ -53,7 +53,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	//
 	
 	concept Us120VacJunction < electrical:Junction [
-		restricts electrical:has_junction_type to "us-120vac"
+		restricts electrical:hasJunctionType to "us-120vac"
 		restricts all base:joins to Us120VacInterface
 		restricts base:joins to max 2 Us120VacInterface
 		restricts some base:joins to Us120VacLoad
@@ -61,7 +61,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	]
 	
 	rule us_120vac_junction_type [
-		electrical:has_junction_type(e, "us-120vac") -> Us120VacJunction(e)
+		electrical:hasJunctionType(e, "us-120vac") -> Us120VacJunction(e)
 	]
 	
 	rule us_120vac_conjugates_1 [

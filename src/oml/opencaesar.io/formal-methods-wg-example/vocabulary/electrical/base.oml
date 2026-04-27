@@ -16,7 +16,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	
 	aspect InterfaceTyped
 	
-	scalar property has_interface_type [
+	scalar property hasInterfaceType [
 		domain InterfaceTyped
 		range xsd:string
 		functional
@@ -29,12 +29,12 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	//
 	
 	concept Interface < base:Interface, InterfaceTyped [
-		restricts base:has_interface_type to "electrical"
-		restricts all base:is_joined_by to Junction
+		restricts base:hasInterfaceType to "electrical"
+		restricts all base:isJoinedBy to Junction
 	]
 	
 	rule electrical_interface_type [
-		base:has_interface_type(e, "electrical") -> Interface(e)
+		base:hasInterfaceType(e, "electrical") -> Interface(e)
 	]
 	
 	//
@@ -45,18 +45,18 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	
 	aspect JunctionTyped
 	
-	scalar property has_junction_type [
+	scalar property hasJunctionType [
 		domain JunctionTyped
 		range xsd:string
 		functional
 	]
 	
 	concept Junction < base:Junction, JunctionTyped [
-		restricts base:has_junction_type to "electrical"
+		restricts base:hasJunctionType to "electrical"
 		restricts all base:joins to Interface
 	]
 	
 	rule electrical_junction_type [
-		base:has_junction_type(e, "electrical") -> Junction(e)
+		base:hasJunctionType(e, "electrical") -> Junction(e)
 	]
 }

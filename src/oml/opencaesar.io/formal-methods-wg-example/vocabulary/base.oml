@@ -14,7 +14,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as 
 	
 	aspect Named
 	
-	scalar property has_name [
+	scalar property hasName [
 		domain Named
 		range xsd:string
 		functional
@@ -28,7 +28,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as 
 	
 	aspect Typed
 	
-	scalar property has_type [
+	scalar property hasType [
 		domain Typed
 		range xsd:string
 		functional
@@ -48,7 +48,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as 
 		from Presenting
 		to Presented
 		forward presents
-		reverse is_presented_by
+		reverse isPresentedBy
 		inverse functional
 	]
 
@@ -66,7 +66,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as 
 		from Joining
 		to Joined
 		forward joins
-		reverse is_joined_by
+		reverse isJoinedBy
 		inverse functional
 	]
 	
@@ -77,13 +77,13 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as 
 	//
 	
 	concept Component [
-		key has_name
+		key hasName
 	] < Named, Typed, Presenting [
-		restricts has_type to "component"
+		restricts hasType to "component"
 	]
 	
 	rule component_type [
-		has_type(e, "component") -> Component(e)
+		hasType(e, "component") -> Component(e)
 	]
 	
 	//
@@ -93,16 +93,16 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as 
 	//
 	
 	concept Interface [
-		key has_name
+		key hasName
 	] < Named, Typed, Presenting, Presented, Joined [
-		restricts has_type to "interface"
+		restricts hasType to "interface"
 	]
 	
 	rule interface_type [
-		has_type(e, "interface") -> Interface(e)
+		hasType(e, "interface") -> Interface(e)
 	]
 	
-	scalar property has_interface_type [
+	scalar property hasInterfaceType [
 		domain Interface
 		range xsd:string
 		functional
@@ -115,16 +115,16 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as 
 	//
 	
 	concept Junction [
-		key has_name
+		key hasName
 	] < Named, Typed, Joining [
-		restricts has_type to "junction"
+		restricts hasType to "junction"
 	]
 	
 	rule junction_type [
-		has_type(e, "junction") -> Junction(e)
+		hasType(e, "junction") -> Junction(e)
 	]
 	
-	scalar property has_junction_type [
+	scalar property hasJunctionType [
 		domain Junction
 		range xsd:string
 		functional

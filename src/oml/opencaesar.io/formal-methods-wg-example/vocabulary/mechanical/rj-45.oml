@@ -15,7 +15,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	//
 	
 	aspect Rj45Interface < base:Joined [
-		restricts all base:is_joined_by to Rj45Junction		
+		restricts all base:isJoinedBy to Rj45Junction		
 	]
 	
 	//
@@ -25,11 +25,11 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	//
 	
 	concept Rj45Male < mechanical:Interface, Rj45Interface [
-		restricts mechanical:has_interface_type to "rj-45-male"
+		restricts mechanical:hasInterfaceType to "rj-45-male"
 	]
 	
 	rule rj_45_male_interface_type [
-		mechanical:has_interface_type(e, "rj-45-male") -> Rj45Male(e)
+		mechanical:hasInterfaceType(e, "rj-45-male") -> Rj45Male(e)
 	]
 	
 	//
@@ -39,11 +39,11 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	//
 	
 	concept Rj45Female < mechanical:Interface, Rj45Interface [
-		restricts mechanical:has_interface_type to "rj-45-female"
+		restricts mechanical:hasInterfaceType to "rj-45-female"
 	]
 	
 	rule rj_45_female_interface_type [
-		mechanical:has_interface_type(e, "rj-45-female") -> Rj45Female(e)
+		mechanical:hasInterfaceType(e, "rj-45-female") -> Rj45Female(e)
 	]
 	
 	//
@@ -53,7 +53,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	//
 	
 	concept Rj45Junction < mechanical:Junction [
-		restricts mechanical:has_junction_type to "rj-45"
+		restricts mechanical:hasJunctionType to "rj-45"
 		restricts all base:joins to Rj45Interface
 		restricts base:joins to max 2 Rj45Interface
 		restricts some base:joins to Rj45Male
@@ -61,7 +61,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	]
 	
 	rule rj_45_junction_type [
-		mechanical:has_junction_type(e, "rj-45") -> Rj45Junction(e)
+		mechanical:hasJunctionType(e, "rj-45") -> Rj45Junction(e)
 	]
 	
 	rule c13-conjugates-1 [

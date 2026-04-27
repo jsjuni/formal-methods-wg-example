@@ -15,12 +15,12 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	//
 	
 	concept Ethernet1000BaseTInterface < electrical:Interface [
-		restricts electrical:has_interface_type to "ethernet-1000base-t"
-		restricts all base:is_joined_by to Ethernet1000BaseTJunction		
+		restricts electrical:hasInterfaceType to "ethernet-1000base-t"
+		restricts all base:isJoinedBy to Ethernet1000BaseTJunction		
 	]
 		
 	rule ethernet_1000base_t_interface_type [
-		electrical:has_interface_type(e, "ethernet-1000base-t") -> Ethernet1000BaseTInterface(e)
+		electrical:hasInterfaceType(e, "ethernet-1000base-t") -> Ethernet1000BaseTInterface(e)
 	]
 	
 	//
@@ -30,13 +30,13 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	//
 	
 	concept Ethernet1000BaseTJunction < electrical:Junction [
-		restricts electrical:has_junction_type to "ethernet-1000base-t"
+		restricts electrical:hasJunctionType to "ethernet-1000base-t"
 		restricts all base:joins to Ethernet1000BaseTInterface
 		restricts base:joins to max 2 Ethernet1000BaseTInterface
 	]
 		
 	rule ethernet_1000base_t_junction_type [
-		electrical:has_junction_type(e, "ethernet-1000base-t") -> Ethernet1000BaseTJunction(e)
+		electrical:hasJunctionType(e, "ethernet-1000base-t") -> Ethernet1000BaseTJunction(e)
 	]
 	
 }

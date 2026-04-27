@@ -15,7 +15,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	//
 	
 	aspect Iec60320C13Interface < base:Joined [
-		restricts all base:is_joined_by to Iec60320C13Junction		
+		restricts all base:isJoinedBy to Iec60320C13Junction		
 	]
 	
 	//
@@ -25,11 +25,11 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	//
 	
 	concept Iec60320C13Plug < mechanical:Interface, Iec60320C13Interface [
-		restricts mechanical:has_interface_type to "iec-60320-plug"
+		restricts mechanical:hasInterfaceType to "iec-60320-plug"
 	]
 	
 	rule iec_60320_plug_interface_type [
-		mechanical:has_interface_type(e, "iec-60320-plug") -> Iec60320C13Plug(e)
+		mechanical:hasInterfaceType(e, "iec-60320-plug") -> Iec60320C13Plug(e)
 	]
 	
 	//
@@ -39,11 +39,11 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	//
 	
 	concept Iec60320C13Socket < mechanical:Interface, Iec60320C13Interface [
-		restricts mechanical:has_interface_type to "iec-60320-socket"
+		restricts mechanical:hasInterfaceType to "iec-60320-socket"
 	]
 	
 	rule iec_60320_socket_interface_type [
-		mechanical:has_interface_type(e, "iec-60320-socket") -> Iec60320C13Socket(e)
+		mechanical:hasInterfaceType(e, "iec-60320-socket") -> Iec60320C13Socket(e)
 	]
 	
 	//
@@ -53,7 +53,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	//
 	
 	concept Iec60320C13Junction < mechanical:Junction [
-		restricts mechanical:has_junction_type to "iec-60320"
+		restricts mechanical:hasJunctionType to "iec-60320"
 		restricts all base:joins to Iec60320C13Interface
 		restricts base:joins to max 2 Iec60320C13Interface
 		restricts some base:joins to Iec60320C13Plug
@@ -61,7 +61,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	]
 	
 	rule c13_junction_type [
-		mechanical:has_junction_type(e, "iec-60320") -> Iec60320C13Junction(e)
+		mechanical:hasJunctionType(e, "iec-60320") -> Iec60320C13Junction(e)
 	]
 	
 	rule c13_conjugates_1 [
