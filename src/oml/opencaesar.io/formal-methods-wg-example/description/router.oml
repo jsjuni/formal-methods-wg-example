@@ -31,13 +31,21 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 		base:presents power_cable_socket
 	]
 	
+	instance cat6e_cable_1 : cable:Cat6eCable [
+		base:hasName "cat6e cable 1"
+	]
+	
+	instance cat6e_cable_2 : cable:Cat6eCable [
+		base:hasName "cat6e cable 2"
+	]
+	
 	//
 	//
 	// power interfaces
 	//
 	//
 	
-	instance router_power_plug : iec-60320-c13:Iec60320C13Socket [
+	instance router_power_plug : iec-60320-c13:Iec60320C13Plug [
 		base:hasName "router power input plug"
 		base:presents router_power_input
 	]
@@ -87,5 +95,50 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 	instance router_ethernet_port_2 : ethernet:Ethernet1000BaseTInterface [
 		base:hasName "router ethernet port 2"
 	]
+	
+	instance cable_1_male_1 : rj-45:Rj45Male [
+		base:hasName "cable 1 male 1"
+		base:presents cable_1_port_1
+	]
+	
+	instance cable_1_port_1 : ethernet:Ethernet1000BaseTInterface [
+		base:hasName "cable 1 port 1"
+	]
+	
+	instance cable_2_male_1 : rj-45:Rj45Male [
+		base:hasName "cable 2 male 1"
+		base:presents cable_2_port_1
+	]
+	
+	instance cable_2_port_1 : ethernet:Ethernet1000BaseTInterface [
+		base:hasName "cable 2 port 1"
+	]
+	
+	
+	//
+	//
+	// power junctions
+	//
+	//
+	
+
+	instance router_power_mechanical_junction : iec-60320-c13:Iec60320C13Junction [
+		base:hasName "router power mechanical junction"
+		base:joins router_power_plug
+		base:joins power_cable_socket
+	]
+
+	instance router_power_electrical_junction : us120vac:Us120VacJunction [
+		base:hasName "router power electrical junction"
+		base:joins router_power_input
+		base:joins power_cable_output
+	]
+	
+	
+	//
+	//
+	// data junctions
+	//
+	//
 	
 }

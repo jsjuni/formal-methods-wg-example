@@ -66,18 +66,20 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	
 	rule us_120vac_conjugates_1 [
 		Us120VacJunction(j) &
-		base:joins(j, p) &
+		base:joins(j, l) &
 		base:joins(j, s) &
-		Us120VacLoad(p) ->
+		differentFrom(l, s) &
+		Us120VacLoad(l) ->
 		Us120VacSource(s)
 	]
 	
 	rule us_120vac_conjugates_2 [
 		Us120VacJunction(j) &
-		base:joins(j, p) &
+		base:joins(j, l) &
 		base:joins(j, s) &
+		differentFrom(l, s) &
 		Us120VacSource(s) ->
-		Us120VacLoad(p)
+		Us120VacLoad(l)
 	]
 	
 }

@@ -68,6 +68,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 		Iec60320C13Junction(j) &
 		base:joins(j, p) &
 		base:joins(j, s) &
+		differentFrom(p, s) &
 		Iec60320C13Plug(p) ->
 		Iec60320C13Socket(s)
 	]
@@ -76,6 +77,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 		Iec60320C13Junction(j) &
 		base:joins(j, p) &
 		base:joins(j, s) &
+		differentFrom(p, s) &
 		Iec60320C13Socket(s) ->
 		Iec60320C13Plug(p)
 	]
