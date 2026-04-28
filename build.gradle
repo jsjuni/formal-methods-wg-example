@@ -106,6 +106,7 @@ task reason(type:io.opencaesar.owl.reason.OwlReasonTask, group:"oml", dependsOn:
     ]
 	reportPath = file("build/logs/${oml.dataset.name}/reasoning.xml")
 	uniqueNames = false
+	checkMinimumCardinality = false
 }
 
 /*
