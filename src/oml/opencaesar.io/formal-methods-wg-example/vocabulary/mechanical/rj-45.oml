@@ -64,4 +64,18 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 		mechanical:hasJunctionType(e, "rj-45") -> Rj45Junction(e)
 	]
 	
+	rule rj_45_junction_conjugates_1 [
+		Rj45Junction(j) &
+		base:joins(j, m) & base:joins(j, f) & differentFrom(m, f) &
+		Rj45Male(m) ->
+		Rj45Female(f)
+	]
+
+	rule rj_45_junction_conjugates_2 [
+		Rj45Junction(j) &
+		base:joins(j, m) & base:joins(j, f) & differentFrom(m, f) &
+		Rj45Female(f) ->
+ 		Rj45Male(m)
+	]
+	
 }

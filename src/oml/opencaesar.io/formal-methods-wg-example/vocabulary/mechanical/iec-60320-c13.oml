@@ -80,4 +80,18 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 		mechanical:hasJunctionType(e, "iec-60320") -> Iec60320C13Junction(e)
 	]
 	
+	rule c13_junction_conjugates_1 [
+		Iec60320C13Junction(j) &
+		base:joins(j, p) & base:joins(j, s) & differentFrom(p, s) &
+		Iec60320C13Plug(p) ->
+		Iec60320C13Socket(s)
+	]
+
+	rule c13_junction_conjugates_2 [
+		Iec60320C13Junction(j) &
+		base:joins(j, p) & base:joins(j, s) & differentFrom(p, s) &
+		Iec60320C13Socket(s) ->
+		Iec60320C13Plug(p)
+	]
+
 }
