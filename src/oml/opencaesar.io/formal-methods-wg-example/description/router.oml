@@ -155,10 +155,14 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 	
 	instance router_rj_45_1_junction : rj-45:Rj45Junction [
 		base:hasName "router ethernet 1 mechanical junction"
+		base:joins router_rj_45_female_1
+		base:joins cat6e_cable_1_male_1
 	]
 	
 	instance router_rj_45_2_junction : rj-45:Rj45Junction [
 		base:hasName "router ethernet 2 mechanical junction"
+		base:joins router_rj_45_female_2
+		base:joins cat6e_cable_2_male_1
 	]
 	
 	//
@@ -167,10 +171,14 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 	
 	instance router_ethernet_1_junction : ethernet:Ethernet1000BaseTJunction [
 		base:hasName "router ethernet 1 electrical junction"
+		base:joins router_ethernet_port_1
+		base:joins cat6e_cable_1_port_1
 	]
 	
 	instance router_ethernet_2_junction : ethernet:Ethernet1000BaseTJunction [
 		base:hasName "router ethernet 2 electrical junction"
+		base:joins router_ethernet_port_2
+		base:joins cat6e_cable_2_port_1
 	]
 	
 }
