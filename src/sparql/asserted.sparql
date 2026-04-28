@@ -1,10 +1,11 @@
+PREFIX owl:    <http://www.w3.org/2002/07/owl#>
 PREFIX base:   <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#>
 
 SELECT ?iri ?pred ?obj
-FROM <http://opencaesar.io/formal-methods-wg-example/description/router#>
+FROM <http://opencaesar.io/formal-methods-wg-example/description/router>
 
 WHERE {
-	VALUES ?type { base:Component base:Interface base:Junction }
-	?iri a ?type ;
+	?iri a owl:NamedIndividual ;
 		?pred ?obj .
 }
+ORDER BY ?iri ?pred

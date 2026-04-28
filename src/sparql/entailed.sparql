@@ -8,3 +8,4 @@ WHERE {
 	?iri a ?type ;
 		?pred ?obj .
 }
+ORDER BY ?iri ?pred
