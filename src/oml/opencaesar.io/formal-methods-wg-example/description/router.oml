@@ -1,12 +1,10 @@
-@dc:title "Example Description"
-@dc:creator "Example Company"
-@dc:rights "Copyright 2019, by Example Company"
+@dc:title "Router Description"
+@dc:creator "Steven Jenkins"
+
 description <http://opencaesar.io/formal-methods-wg-example/description/router#> as router-desc {
 	
 	uses <http://purl.org/dc/elements/1.1/> as dc
 
-	uses <http://www.w3.org/2002/07/owl#> as owl
-	
 	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as base
 	
 	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/ethernet#> as ethernet
@@ -19,12 +17,14 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/cable/base#> as cable
 
 	//
-	// components
+	// Components
 	//
 	
 	instance router : router:Router [
 		base:hasName "router 1"
 		base:presents router_power_plug
+		base:presents router_rj_45_female_1
+		base:presents router_rj_45_female_2
 	]
 	
 	instance power_cable : cable:PowerCable [
@@ -43,7 +43,7 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 	
 	//
 	//
-	// power interfaces
+	// Power Interfaces
 	//
 	//
 	
@@ -76,7 +76,7 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 	
 	//
 	//
-	// data interfaces
+	// Data Interfaces
 	//
 	//
 	
@@ -98,38 +98,44 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 		base:hasName "router ethernet port 2"
 	]
 	
-	instance cable_1_male_1 : rj-45:Rj45Male [
-		base:hasName "cable 1 male 1"
-		base:presents cable_1_port_1
+	instance cat6e_cable_1_male_1 : rj-45:Rj45Male [
+		base:hasName "cat6e cable 1 male 1"
+		base:presents cat6e_cable_1_port_1
 	]
 	
-	instance cable_1_port_1 : ethernet:Ethernet1000BaseTInterface [
-		base:hasName "cable 1 port 1"
+	instance cat6e_cable_1_port_1 : ethernet:Ethernet1000BaseTInterface [
+		base:hasName "cat6e cable 1 port 1"
 	]
 	
-	instance cable_2_male_1 : rj-45:Rj45Male [
-		base:hasName "cable 2 male 1"
-		base:presents cable_2_port_1
+	instance cat6e_cable_2_male_1 : rj-45:Rj45Male [
+		base:hasName "cat6e cable 2 male 1"
+		base:presents cat6e_cable_2_port_1
 	]
 	
-	instance cable_2_port_1 : ethernet:Ethernet1000BaseTInterface [
-		base:hasName "cable 2 port 1"
+	instance cat6e_cable_2_port_1 : ethernet:Ethernet1000BaseTInterface [
+		base:hasName "cat6e cable 2 port 1"
 	]
-	
 	
 	//
 	//
-	// power junctions
+	// Power Junctions
 	//
 	//
 	
-
+	//
+	// Mechanical
+	//
+	
 	instance router_power_mechanical_junction : iec-60320-c13:Iec60320C13Junction [
 		base:hasName "router power mechanical junction"
 		base:joins router_power_plug
 		base:joins power_cable_socket
 	]
 
+	//
+	// Electrical
+	//
+	
 	instance router_power_electrical_junction : us120vac:Us120VacJunction [
 		base:hasName "router power electrical junction"
 		base:joins router_power_input
@@ -139,8 +145,32 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 	
 	//
 	//
-	// data junctions
+	// Data Junctions
 	//
 	//
+	
+	//
+	// Mechanical
+	//
+	
+	instance router_rj_45_1_junction : rj-45:Rj45Junction [
+		base:hasName "router ethernet 1 mechanical junction"
+	]
+	
+	instance router_rj_45_2_junction : rj-45:Rj45Junction [
+		base:hasName "router ethernet 2 mechanical junction"
+	]
+	
+	//
+	// Electrical
+	//
+	
+	instance router_ethernet_1_junction : ethernet:Ethernet1000BaseTJunction [
+		base:hasName "router ethernet 1 electrical junction"
+	]
+	
+	instance router_ethernet_2_junction : ethernet:Ethernet1000BaseTJunction [
+		base:hasName "router ethernet 2 electrical junction"
+	]
 	
 }

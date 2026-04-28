@@ -1,6 +1,6 @@
-@dc:title "Example Vocabulary"
-@dc:creator "Example Company"
-@dc:rights "Copyright 2019, by Example Company"
+@dc:title "Mechanical Base Vocabulary"
+@dc:creator "Steven Jenkins"
+
 vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/base#> as mechanical {
 	
 	extends <http://purl.org/dc/elements/1.1/> as dc
@@ -50,6 +50,12 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 		range xsd:string
 		functional
 	]
+	
+	//
+	//
+	// Mechanical Junction
+	//
+	//
 	
 	concept Junction < base:Junction, JunctionTyped [
 		restricts base:hasJunctionType to "mechanical"

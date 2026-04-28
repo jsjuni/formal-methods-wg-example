@@ -1,6 +1,6 @@
-@dc:title "Example Vocabulary"
-@dc:creator "Example Company"
-@dc:rights "Copyright 2019, by Example Company"
+@dc:title "Cable Base Vocabulary"
+@dc:creator "Steven Jenkins"
+
 vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/cable/base#> as cable {
 	
 	extends <http://purl.org/dc/elements/1.1/> as dc
@@ -25,17 +25,23 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/cable/base
 		functional
 	]
 	
-	aspect Cable < ComponentTyped [
+	//
+	//
+	// Cable
+	//
+	//
+	
+	concept Cable < base:Component, ComponentTyped [
 		restricts base:hasComponentType to "cable"
 		restricts all base:presents to mechanical:Interface
 	]
 	
-	concept PowerCable < ComponentTyped, base:Component [
-		restricts hasComponentType to "power"
+	concept PowerCable < Cable [
+		restricts hasComponentType to "power-cable"
 		restricts all base:presents to iec-60320-c13:Iec60320C13Interface
 	]
 	
-	concept Cat6eCable < ComponentTyped, base:Component [
+	concept Cat6eCable < Cable [
 		restricts hasComponentType to "ethernet-cable"
 		restricts all base:presents to rj-45:Rj45Interface
 	]

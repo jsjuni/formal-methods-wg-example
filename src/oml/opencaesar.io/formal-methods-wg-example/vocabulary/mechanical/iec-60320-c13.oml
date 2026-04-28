@@ -1,31 +1,47 @@
-@dc:title "Example Vocabulary"
-@dc:creator "Example Company"
-@dc:rights "Copyright 2019, by Example Company"
+@dc:title "IEC 60320 C13 Vocabulary"
+@dc:creator "Steven Jenkins"
+
 vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/iec-60320-c13#> as c13 {
 	
 	extends <http://purl.org/dc/elements/1.1/> as dc
+	extends <http://www.w3.org/2001/XMLSchema#> as xsd
 	
 	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as base
 	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/base#> as mechanical
 	
 	//
 	//
-	// Iec60320C13 Interface
+	// Has Component Type
 	//
 	//
 	
-	aspect Iec60320C13Interface < base:Presenting, base:Presented, base:Joined [
+	aspect InterfaceTyped
+	
+	scalar property hasInterfaceType [
+		domain InterfaceTyped
+		range xsd:string
+		functional
+	]
+	
+	//
+	//
+	// IEC 60320 C13 Interface
+	//
+	//
+	
+	concept Iec60320C13Interface < mechanical:Interface, InterfaceTyped [
+		restricts mechanical:hasInterfaceType to "iec-63020"
 		restricts all base:isJoinedBy to Iec60320C13Junction		
 	]
 	
 	//
 	//
-	// Iec60320C13 Plug
+	// IEC 60320 C13 Plug
 	//
 	//
 	
-	concept Iec60320C13Plug < mechanical:Interface, Iec60320C13Interface [
-		restricts mechanical:hasInterfaceType to "iec-60320-plug"
+	concept Iec60320C13Plug < Iec60320C13Interface [
+		restricts hasInterfaceType to "iec-60320-plug"
 	]
 	
 	rule iec_60320_plug_interface_type [
@@ -34,12 +50,12 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	
 	//
 	//
-	// Iec60320C13 Socket
+	// IEC 60320 C13 Socket
 	//
 	//
 	
-	concept Iec60320C13Socket < mechanical:Interface, Iec60320C13Interface [
-		restricts mechanical:hasInterfaceType to "iec-60320-socket"
+	concept Iec60320C13Socket < Iec60320C13Interface [
+		restricts hasInterfaceType to "iec-60320-socket"
 	]
 	
 	rule iec_60320_socket_interface_type [
@@ -48,7 +64,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	
 	//
 	//
-	// Iec60320C13 Junction
+	// IEC 60320 C13 Junction
 	//
 	//
 	

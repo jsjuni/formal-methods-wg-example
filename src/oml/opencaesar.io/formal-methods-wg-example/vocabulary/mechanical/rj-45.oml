@@ -1,6 +1,6 @@
-@dc:title "Example Vocabulary"
-@dc:creator "Example Company"
-@dc:rights "Copyright 2019, by Example Company"
+@dc:title "RJ-45 Vocabulary"
+@dc:creator "Steven Jenkins"
+
 vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/rj-45#> as rj-45 {
 	
 	extends <http://purl.org/dc/elements/1.1/> as dc
@@ -10,7 +10,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	
 	//
 	//
-	// Rj45 Interface
+	// RJ-45 Interface
 	//
 	//
 	
@@ -20,7 +20,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	
 	//
 	//
-	// Rj45 Plug
+	// RJ-45 Plug
 	//
 	//
 	
@@ -34,7 +34,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	
 	//
 	//
-	// Rj45 Socket
+	// RJ-45 Socket
 	//
 	//
 	
@@ -48,7 +48,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical
 	
 	//
 	//
-	// Rj45 Junction
+	// RJ-45 Junction
 	//
 	//
 	

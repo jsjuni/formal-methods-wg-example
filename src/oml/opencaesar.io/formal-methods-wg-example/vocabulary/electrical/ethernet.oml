@@ -1,6 +1,6 @@
-@dc:title "Example Vocabulary"
-@dc:creator "Example Company"
-@dc:rights "Copyright 2019, by Example Company"
+@dc:title "Ethernet 1000BASE-T Vocabulary"
+@dc:creator "Steven Jenkins"
+
 vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/ethernet#> as ethernet {
 	
 	extends <http://purl.org/dc/elements/1.1/> as dc
@@ -10,7 +10,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	
 	//
 	//
-	// Ethernet1000BaseT Interface
+	// Ethernet 1000BASE-T Interface
 	//
 	//
 	
@@ -25,7 +25,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	
 	//
 	//
-	// Ethernet1000BaseT Junction
+	// Ethernet 1000BASE-T Junction
 	//
 	//
 	

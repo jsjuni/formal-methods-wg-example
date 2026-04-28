@@ -1,6 +1,6 @@
-@dc:title "Example Vocabulary"
-@dc:creator "Example Company"
-@dc:rights "Copyright 2019, by Example Company"
+@dc:title "US 120 Vac Vocabulary"
+@dc:creator "Steven Jenkins"
+
 vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/us120vac#> as us120vac {
 	
 	extends <http://purl.org/dc/elements/1.1/> as dc
@@ -10,7 +10,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	
 	//
 	//
-	// Us120Vac Interface
+	// US 120 Vac Interface
 	//
 	//
 	
@@ -20,7 +20,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	
 	//
 	//
-	// Us120Vac Plug
+	// US 120 Vac Plug
 	//
 	//
 	
@@ -34,7 +34,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	
 	//
 	//
-	// Us120Vac Socket
+	// US 120 Vac Socket
 	//
 	//
 	
@@ -48,7 +48,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 	
 	//
 	//
-	// Us120Vac Junction
+	// US 120 Vac Junction
 	//
 	//
 	
