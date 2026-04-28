@@ -1,6 +1,7 @@
 PREFIX base:   <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#>
 
 SELECT ?iri ?pred ?obj
+FROM <http://opencaesar.io/formal-methods-wg-example/description/bundle/individuals>
 
 WHERE {
 	VALUES ?type { base:Component base:Interface base:Junction }
