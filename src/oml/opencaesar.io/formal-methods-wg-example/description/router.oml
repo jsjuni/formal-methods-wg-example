@@ -6,9 +6,86 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 	uses <http://purl.org/dc/elements/1.1/> as dc
 
 	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as base
-	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/router/base#> as router
-
-	instance router_1 : router:Router
 	
+	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/ethernet#> as ethernet
+	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/us120vac#> as us120vac
+	
+	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/iec-60320-c13#> as iec-60320-c13	
+	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/rj-45#> as rj-45
+	
+	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/router/base#> as router
+	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/cable/base#> as cable
+
+	//
+	// components
+	//
+	
+	instance router : router:Router [
+		base:hasName "router 1"
+		base:presents router_power_plug
+	]
+	
+	instance power_cable : cable:PowerCable [
+		base:hasName "power cable"
+		base:presents power_cable_plug
+		base:presents power_cable_socket
+	]
+	
+	//
+	//
+	// power interfaces
+	//
+	//
+	
+	instance router_power_plug : iec-60320-c13:Iec60320C13Socket [
+		base:hasName "router power input plug"
+		base:presents router_power_input
+	]
+	
+	instance router_power_input :  us120vac:Us120VacLoad [
+		base:hasName "router power input"
+	]
+	
+	instance power_cable_plug : iec-60320-c13:Iec60320C13Plug [
+		base:hasName "power cable plug"
+		base:presents power_cable_input
+	]
+	
+	instance power_cable_input : us120vac:Us120VacLoad [
+		base:hasName "power cable input"
+	]
+	
+	instance power_cable_socket : iec-60320-c13:Iec60320C13Socket [
+		base:hasName "power cable socket"
+		base:presents power_cable_output
+	]
+	
+	instance power_cable_output : us120vac:Us120VacSource [
+		base:hasName "power cable output"
+	]
+	
+	//
+	//
+	// data interfaces
+	//
+	//
+	
+	instance router_rj_45_female_1 : rj-45:Rj45Female [
+		base:hasName "router ethernet female 1"
+		base:presents router_ethernet_port_1
+	]
+	
+	instance router_ethernet_port_1 : ethernet:Ethernet1000BaseTInterface [
+		base:hasName "router ethernet port 1"
+	]
+	
+	instance router_rj_45_female_2 : rj-45:Rj45Female [
+		base:hasName "router ethernet female 2"
+		base:presents router_ethernet_port_2
+	]
+	
+	instance router_ethernet_port_2 : ethernet:Ethernet1000BaseTInterface [
+		base:hasName "router ethernet port 2"
+	]
 	
 }

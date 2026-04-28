@@ -8,6 +8,8 @@ vocabulary bundle <http://opencaesar.io/formal-methods-wg-example/vocabulary/bun
 	includes <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#>
 
 	includes <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/base#>
+	includes <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/ethernet#>
+	includes <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/us120vac#>
 
 	includes <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/base#>
 	includes <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/iec-60320-c13#>

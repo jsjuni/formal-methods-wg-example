@@ -1,7 +1,9 @@
-PREFIX vocabulary1:   <http://opencaesar.io/example/vocabulary/vocabulary1#>
+PREFIX base:   <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#>
 
-SELECT ?x ?y
+SELECT ?iri ?pred ?obj
 
 WHERE {
-	?x vocabulary1:r ?y
+	VALUES ?type { base:Component base:Interface base:Junction }
+	?iri a ?type ;
+		?pred ?obj .
 }
