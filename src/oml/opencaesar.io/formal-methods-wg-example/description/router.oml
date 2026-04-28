@@ -5,6 +5,8 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 	
 	uses <http://purl.org/dc/elements/1.1/> as dc
 
+	uses <http://www.w3.org/2002/07/owl#> as owl
+	
 	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as base
 	
 	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/ethernet#> as ethernet

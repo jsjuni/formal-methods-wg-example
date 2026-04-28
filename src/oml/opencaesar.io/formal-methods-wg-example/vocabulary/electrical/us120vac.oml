@@ -64,22 +64,4 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical
 		electrical:hasJunctionType(e, "us-120vac") -> Us120VacJunction(e)
 	]
 	
-	rule us_120vac_conjugates_1 [
-		Us120VacJunction(j) &
-		base:joins(j, l) &
-		base:joins(j, s) &
-		differentFrom(l, s) &
-		Us120VacLoad(l) ->
-		Us120VacSource(s)
-	]
-	
-	rule us_120vac_conjugates_2 [
-		Us120VacJunction(j) &
-		base:joins(j, l) &
-		base:joins(j, s) &
-		differentFrom(l, s) &
-		Us120VacSource(s) ->
-		Us120VacLoad(l)
-	]
-	
 }
