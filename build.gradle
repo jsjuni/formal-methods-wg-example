@@ -149,11 +149,34 @@ task query(type:io.opencaesar.owl.query.OwlQueryTask, group:"oml", dependsOn: lo
 	inputs.files(load.inputs.files) // rerun when the dataset changes
 	endpointURL = "http://localhost:${startFuseki.port.get()}/${oml.dataset.name}"
 	queryPath = oml.dataset.queries ? file(oml.dataset.queries) : null
-	resultPath = file("build/results/${oml.dataset.name}/stage-1")
+	resultPath = file("build/results/${oml.dataset.name}")
 	format = 'tsv'
 }
 
 /*
+ * A task to generate unit tests from the entailed axioms genergated by query.
+ */
+task generateTests(type: Exec, dependsOn: query) {
+     workingDir 'src/ruby'
+     commandLine '/Users/sjenkins/.rbenv/shims/ruby', 'generate_tests.rb', '--graph', '<http://opencaesar.io/formal-methods-wg-example/description/bundle/individuals>',
+     	'--path', '../../build/sparql', '../../build/results/formal-methods-wg-example/entailed.tsv'
+     outputs.file('../../build/sparql')
+     doLast { }
+ }
+ 
+/*
+ * A task to run a set of SPARQL queries on a Fuseki dataset endpoint
+ * @seeAlso https://github.com/opencaesar/owl-tools/blob/master/owl-query/README.md
+ * Can't manage to make this force generateTests
+ */
+task runTests(type:io.opencaesar.owl.query.OwlQueryTask, group:"oml", dependsOn: generateTests) {
+	endpointURL = "http://localhost:${startFuseki.port.get()}/${oml.dataset.name}"
+	queryPath = file("build/sparql")
+	resultPath = file("build/results/${oml.dataset.name}")
+	format = 'tsv'
+}
+
+ /*
  * A task to build the projects;s artifacts
  * @seeAlso https://docs.gradle.org/current/userguide/base_plugin.html
  */
