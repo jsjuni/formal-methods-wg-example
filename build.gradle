@@ -149,7 +149,7 @@ task query(type:io.opencaesar.owl.query.OwlQueryTask, group:"oml", dependsOn: lo
 	inputs.files(load.inputs.files) // rerun when the dataset changes
 	endpointURL = "http://localhost:${startFuseki.port.get()}/${oml.dataset.name}"
 	queryPath = oml.dataset.queries ? file(oml.dataset.queries) : null
-	resultPath = file("build/results/${oml.dataset.name}")
+	resultPath = file("build/results/${oml.dataset.name}/stage-1")
 	format = 'tsv'
 }
 

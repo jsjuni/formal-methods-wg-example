@@ -20,4 +20,4 @@ datasets:
       description: This is an OML example dataset
       iri: http://opencaesar.io/formal-methods-wg-example/description/bundle
       sources: [ 'src/oml' ]
-      queries: src/sparql
+      queries: src/sparql/stage-1
