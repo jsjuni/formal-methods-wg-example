@@ -33,8 +33,7 @@ abstract sig Component extends Presenter {}
 sig Router extends Component {}
 
 fact router_one_c13_male_only {
-	all r : Router | r.presents in C13_Male
-	all r : Router | one r.presents
+	all r : Router | (one r.presents) and r.presents in C13_Male
 }
 
 //
@@ -54,11 +53,11 @@ fact power_cable_one_c13_female_only {
 //
 
 fact interface_presented {
-	all i : Interface | one presents.i
+	all i : Interface | lone presents.i
 }
 
 abstract sig Interface extends Presenter {
-//	is_joined_in: one Junction
+	is_joined_in: lone Junction
 }
 
 //
@@ -131,7 +130,21 @@ fact c13_female_one_120vac_source {
 //
 //
 
-//abstract sig Junction extends Thing {}
+abstract sig Junction extends Thing {}
+
+//
+//
+// Completeness Constraints
+//
+//
+
+fact all_interfaces_presented {
+	all i : Interface | one presents.i
+}
+
+fact all_interfaces_joined {
+	all i : Interface | one i.is_joined_in
+}
 
 run example {} for 8 but exactly 1 Router, exactly 1 PowerCable
 
