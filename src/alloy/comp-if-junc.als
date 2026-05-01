@@ -76,6 +76,10 @@ fact us120vac_presented_by_c13 {
 	all i : Us120VacInterface | i.^presents in C13Interface
 }
 
+fact us120vac_joined_in_us120vac {
+	all i : Us120VacInterface | i.is_joined_in in Us120VacJunction
+}
+
 // US 120 VAC Load
 
 sig Us120Vac_Load extends Us120VacInterface {}
@@ -108,6 +112,10 @@ fact c13_presents_us120vac {
 	all i : C13Interface | i.presents in Us120VacInterface
 }
 
+fact c13_joined_in_c13 {
+	all i : C13Interface | i.is_joined_in in C13Junction
+}
+
 // C13 Male
 
 sig C13_Male extends C13Interface {}
@@ -131,6 +139,14 @@ fact c13_female_one_120vac_source {
 //
 
 abstract sig Junction extends Thing {}
+
+// C13 Junction
+
+sig C13Junction extends Junction {}
+
+// US 120 VAC Junction
+
+sig Us120VacJunction extends Junction {}
 
 //
 //
