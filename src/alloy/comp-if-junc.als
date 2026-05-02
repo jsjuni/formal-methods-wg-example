@@ -32,8 +32,12 @@ abstract sig Component extends Presenter {}
 
 sig Router extends Component {}
 
-fact router_one_c13_male_only {
-	all r : Router | (one r.presents) and r.presents in C13_Male
+fact router_presents_one_c13_male {
+	all r : Router | one r.(presents :> C13_Male)
+}
+
+fact router_presents_no_c13_female {
+	all r : Router | no r.(presents :> C13_Female)
 }
 
 //
@@ -42,8 +46,12 @@ fact router_one_c13_male_only {
 
 sig PowerCable extends Component {}
 
-fact power_cable_one_c13_female_only {
-	all c : PowerCable | (one c.presents) and (c.presents in C13_Female)
+fact power_cable_one_c13_female {
+	all c : PowerCable | one c.(presents :> C13_Female)
+}
+
+fact power_cable_presents_no_c13_male {
+	all c : PowerCable | no c.(presents :> C13_Male)
 }
 
 //
@@ -120,16 +128,24 @@ fact c13_joined_in_c13 {
 
 sig C13_Male extends C13Interface {}
 
-fact c13_male_one_120vac_load {
-	all i : C13_Male | (one i.presents) and (i.presents in Us120Vac_Load)
+fact c13_male_presents_one {
+	all i : C13_Male | (one i.presents)
+}
+
+fact c13_male_presents_us120vac_load {
+	all i : C13_Male | i.presents in Us120Vac_Load
 }
 
 // C13 Female
 
 sig C13_Female extends C13Interface {}
 
-fact c13_female_one_120vac_source {
-	all i : C13_Female | (one i.presents) and (i.presents in Us120Vac_Source)
+fact c13_female_presents_one {
+	all i : C13_Female | one i.presents
+}
+
+fact c13_female_us120vac_source {
+	all i : C13_Female | i.presents in Us120Vac_Source
 }
 
 //
@@ -144,16 +160,24 @@ abstract sig Junction extends Thing {}
 
 sig C13Junction extends Junction {}
 
-fact c13_junction_conjugates {
-	all j : C13Junction | lone j.(~is_joined_in :> C13_Male) and lone j.(~is_joined_in :> C13_Female)
+fact c13_junction_mail {
+	all j : C13Junction | lone j.(~is_joined_in :> C13_Male)
+}
+
+fact c13_junction_female {
+	all j : C13Junction | lone j.(~is_joined_in :> C13_Female)
 }
 
 // US 120 VAC Junction
 
 sig Us120VacJunction extends Junction {}
 
-fact us120vac_junction_conjugates {
-	all j : Us120VacJunction | lone j.(~is_joined_in :> Us120Vac_Load) and lone j.(~is_joined_in :> Us120Vac_Source)
+fact us120vac_junction_load {
+	all j : Us120VacJunction | lone j.(~is_joined_in :> Us120Vac_Load)
+}
+
+fact us120vac_junction_source {
+	all j : Us120VacJunction | lone j.(~is_joined_in :> Us120Vac_Source)
 }
 
 //
