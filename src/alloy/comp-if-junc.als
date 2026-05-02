@@ -144,9 +144,17 @@ abstract sig Junction extends Thing {}
 
 sig C13Junction extends Junction {}
 
+fact c13_junction_conjugates {
+	all j : C13Junction | lone j.(~is_joined_in :> C13_Male) and lone j.(~is_joined_in :> C13_Female)
+}
+
 // US 120 VAC Junction
 
 sig Us120VacJunction extends Junction {}
+
+fact us120vac_junction_conjugates {
+	all j : Us120VacJunction | lone j.(~is_joined_in :> Us120Vac_Load) and lone j.(~is_joined_in :> Us120Vac_Source)
+}
 
 //
 //
@@ -162,5 +170,5 @@ fact all_interfaces_joined {
 	all i : Interface | one i.is_joined_in
 }
 
-run example {} for 8 but exactly 1 Router, exactly 1 PowerCable
+run example {} for 16 but exactly 2 Router, exactly 2 PowerCable
 
