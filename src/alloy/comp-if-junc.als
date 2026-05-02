@@ -32,8 +32,8 @@ abstract sig Component extends Presenter {}
 
 sig Router extends Component {}
 
-fact router_presents_one_c13_male {
-	all r : Router | one r.(presents :> C13_Male)
+fact router_presents_lone_c13_male {
+	all r : Router | lone r.(presents :> C13_Male)
 }
 
 fact router_presents_no_c13_female {
@@ -46,8 +46,8 @@ fact router_presents_no_c13_female {
 
 sig PowerCable extends Component {}
 
-fact power_cable_one_c13_female {
-	all c : PowerCable | one c.(presents :> C13_Female)
+fact power_cable_lone_c13_female {
+	all c : PowerCable | lone c.(presents :> C13_Female)
 }
 
 fact power_cable_presents_no_c13_male {
@@ -128,8 +128,8 @@ fact c13_joined_in_c13 {
 
 sig C13_Male extends C13Interface {}
 
-fact c13_male_presents_one {
-	all i : C13_Male | (one i.presents)
+fact c13_male_presents_lone {
+	all i : C13_Male | (lone i.presents)
 }
 
 fact c13_male_presents_us120vac_load {
@@ -140,8 +140,8 @@ fact c13_male_presents_us120vac_load {
 
 sig C13_Female extends C13Interface {}
 
-fact c13_female_presents_one {
-	all i : C13_Female | one i.presents
+fact c13_female_presents_lone {
+	all i : C13_Female | lone i.presents
 }
 
 fact c13_female_us120vac_source {
@@ -160,7 +160,7 @@ abstract sig Junction extends Thing {}
 
 sig C13Junction extends Junction {}
 
-fact c13_junction_mail {
+fact c13_junction_male {
 	all j : C13Junction | lone j.(~is_joined_in :> C13_Male)
 }
 
@@ -182,9 +182,31 @@ fact us120vac_junction_source {
 
 //
 //
+// Specific Example Constraints
+//
+//
+
+fact c13_presented_by {
+	C13Interface.~presents in Router + PowerCable
+}
+
+fact c13_presents_one_us120vac {
+	all c : C13Interface | one c.(presents :> Us120VacInterface)
+}
+
+fact us120vac_presented_by {
+	Us120VacInterface.~presents in C13Interface
+}
+
+//
+//
 // Completeness Constraints
 //
 //
+
+fact all_components_present {
+	all c : Component | some c.presents
+}
 
 fact all_interfaces_presented {
 	all i : Interface | one presents.i
@@ -194,5 +216,8 @@ fact all_interfaces_joined {
 	all i : Interface | one i.is_joined_in
 }
 
-run example {} for 16 but exactly 2 Router, exactly 2 PowerCable
+fact all_junctions_join_two {
+	all j : Junction | some disj i1, i2 : j.~is_joined_in | i1 != i2
+}
 
+run example {} for 16 but exactly 2 Router, exactly 2 PowerCable
