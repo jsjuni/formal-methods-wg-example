@@ -35,10 +35,12 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 	
 	instance cat6e_cable_1 : cable:Cat6eCable [
 		base:hasName "cat6e cable 1"
+		base:presents cat6e_cable_1_male_1
 	]
 	
 	instance cat6e_cable_2 : cable:Cat6eCable [
 		base:hasName "cat6e cable 2"
+		base:presents cat6e_cable_2_male_1
 	]
 	
 	//
