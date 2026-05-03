@@ -50,6 +50,14 @@ sig Junction extends Thing {}
 //
 //
 
+pred presenter_presents_max_3 [ p : Presenter ] {
+	#p.presents <= 3
+}
+
+fact all_presenters_present_max_3 {
+	all p : Presenter | presenter_presents_max_3[p]
+}
+
 pred presents_chain_limited [ i : Interface ] {
 	#i.^(~presents :> Interface) <= 1
 }
@@ -112,6 +120,4 @@ fact all_junctions_join_two {
 	all j : Junction | junction_joins_two[j]
 }
 
-pred example {}
-
-run example for 10 but exactly 2 Junction
+run example {} for 10 but exactly 2 Junction
