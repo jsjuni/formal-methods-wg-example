@@ -120,7 +120,5 @@ fact all_junctions_join_two {
 	all j : Junction | junction_joins_two[j]
 }
 
-pred example {}
-
 check all_junctions_at_equal_depth for 8 but 4 Interface
 
