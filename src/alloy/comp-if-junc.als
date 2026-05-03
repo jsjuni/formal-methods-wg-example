@@ -50,6 +50,14 @@ sig Junction extends Thing {}
 //
 //
 
+pred presenter_presents_max_3 [ p : Presenter ] {
+	#p.presents <= 3
+}
+
+fact all_presenters_present_max_3 {
+	all p : Presenter | presenter_presents_max_3[p]
+}
+
 pred presents_chain_limited [ i : Interface ] {
 	#i.^(~presents :> Interface) <= 1
 }
