@@ -51,7 +51,7 @@ sig Junction extends Thing {}
 //
 
 pred presents_chain_limited [ i : Interface ] {
-	lone i.^presents
+	#i.^(~presents :> Interface) <= 1
 }
 
 fact all_presents_chains_limited {
