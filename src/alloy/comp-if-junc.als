@@ -122,7 +122,5 @@ fact all_junctions_join_two {
 
 pred example {}
 
-run example for 8
-
 check all_junctions_at_equal_depth for 8 but 4 Interface
 
