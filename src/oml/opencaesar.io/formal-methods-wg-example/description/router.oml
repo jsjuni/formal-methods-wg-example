@@ -10,7 +10,7 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/ethernet#> as ethernet
 	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/us120vac#> as us120vac
 	
-	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/iec-60320-c13#> as iec-60320-c13	
+	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/iec-60320#> as iec-60320
 	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/rj-45#> as rj-45
 	
 	uses <http://opencaesar.io/formal-methods-wg-example/vocabulary/router/base#> as router
@@ -49,8 +49,8 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 	//
 	//
 	
-	instance router_power_plug : iec-60320-c13:Iec60320C13Plug [
-		base:hasName "router power input plug"
+	instance router_power_plug : iec-60320:Iec60320C13 [
+		base:hasName "router power plug"
 		base:presents router_power_input
 	]
 	
@@ -58,7 +58,7 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 		base:hasName "router power input"
 	]
 	
-	instance power_cable_plug : iec-60320-c13:Iec60320C13Plug [
+	instance power_cable_plug : iec-60320:Iec60320C13 [
 		base:hasName "power cable plug"
 		base:presents power_cable_input
 	]
@@ -67,7 +67,7 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 		base:hasName "power cable input"
 	]
 	
-	instance power_cable_socket : iec-60320-c13:Iec60320C13Socket [
+	instance power_cable_socket : iec-60320:Iec60320C14 [
 		base:hasName "power cable socket"
 		base:presents power_cable_output
 	]
@@ -128,7 +128,7 @@ description <http://opencaesar.io/formal-methods-wg-example/description/router#>
 	// Mechanical
 	//
 	
-	instance router_power_mechanical_junction : iec-60320-c13:Iec60320C13Junction [
+	instance router_power_mechanical_junction : iec-60320:Iec60320C13C14Junction [
 		base:hasName "router power mechanical junction"
 		base:joins router_power_plug
 		base:joins power_cable_socket

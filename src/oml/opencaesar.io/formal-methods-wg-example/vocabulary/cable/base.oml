@@ -8,7 +8,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/cable/base
 	
 	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as base
 	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/base#> as mechanical
-	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/iec-60320-c13#> as iec-60320-c13
+	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/iec-60320#> as iec-60320
 	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/rj-45#> as rj-45
 	
 	//
@@ -30,7 +30,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/cable/base
 	// Cable
 	//
 	//
-	
+	 
 	concept Cable < base:Component, ComponentTyped [
 		restricts base:hasComponentType to "cable"
 		restricts all base:presents to mechanical:Interface
@@ -38,7 +38,7 @@ vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/cable/base
 	
 	concept PowerCable < Cable [
 		restricts hasComponentType to "power-cable"
-		restricts all base:presents to iec-60320-c13:Iec60320C13Interface
+		restricts all base:presents to iec-60320:Iec60320Interface
 	]
 	
 	concept Cat6eCable < Cable [

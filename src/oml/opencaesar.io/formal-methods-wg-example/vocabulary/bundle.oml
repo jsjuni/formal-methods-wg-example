@@ -12,7 +12,7 @@ vocabulary bundle <http://opencaesar.io/formal-methods-wg-example/vocabulary/bun
 	includes <http://opencaesar.io/formal-methods-wg-example/vocabulary/electrical/us120vac#>
 
 	includes <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/base#>
-	includes <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/iec-60320-c13#>
+	includes <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/iec-60320#>
 	includes <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/rj-45#>
 
 }

@@ -1,0 +1,111 @@
+@dc:title "IEC 60320 C13 Vocabulary"
+@dc:creator "Steven Jenkins"
+
+vocabulary <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/iec-60320#> as iec-60320 {
+	
+	extends <http://purl.org/dc/elements/1.1/> as dc
+	extends <http://www.w3.org/2001/XMLSchema#> as xsd
+	
+	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/base#> as base
+	extends <http://opencaesar.io/formal-methods-wg-example/vocabulary/mechanical/base#> as mechanical
+	
+	//
+	//
+	// Has Component Type
+	//
+	//
+	
+	aspect InterfaceTyped
+	
+	scalar property hasInterfaceType [
+		domain InterfaceTyped
+		range xsd:string
+		functional
+	]
+	
+	//
+	//
+	// IEC 60320 Interface
+	//
+	//
+	
+	concept Iec60320Interface < mechanical:Interface, InterfaceTyped [
+		restricts mechanical:hasInterfaceType to "iec-60320"
+		restricts all base:isJoinedBy to Iec60320Junction		
+	]
+	
+	//
+	//
+	// IEC 60320 C13 (Male)
+	//
+	//
+	
+	concept Iec60320C13 < Iec60320Interface [
+		restricts hasInterfaceType to "iec-60320-c13"
+	]
+	
+	rule iec_60320_c13_interface_type [
+		mechanical:hasInterfaceType(e, "iec-60320-c13") -> Iec60320C13(e)
+	]
+	
+	//
+	//
+	// IEC 60320 C14 (Female)
+	//
+	//
+	
+	concept Iec60320C14 < Iec60320Interface [
+		restricts hasInterfaceType to "iec-60320-c14"
+	]
+	
+	rule iec_60320_c14_interface_type [
+		mechanical:hasInterfaceType(e, "iec-60320-c14") -> Iec60320C14(e)
+	]
+	
+	//
+	//
+	// IEC 60320 Junction
+	//
+	//
+
+	concept Iec60320Junction < mechanical:Junction [
+		restricts all base:joins to Iec60320Interface
+		restricts base:joins to max 2 Iec60320Interface
+	]
+	
+	rule iec_60320_junction_type [
+		mechanical:hasJunctionType(e, "iec-60320") -> Iec60320Junction(e)
+	]
+	
+	//
+	//
+	// IEC 60320 C13/C14 Junction
+	//
+	//
+	
+	concept Iec60320C13C14Junction < Iec60320Junction [
+		restricts mechanical:hasJunctionType to "iec-60320-c13-c14"
+		restricts all base:joins to Iec60320Interface
+		restricts base:joins to max 1 Iec60320C13
+		restricts base:joins to max 1 Iec60320C14
+	]
+	
+	rule c13_c14_junction_type [
+		mechanical:hasJunctionType(e, "iec-60320-c13-c14") -> Iec60320C13C14Junction(e)
+	]
+	
+	rule c13_c14_junction_conjugates_1 [
+		Iec60320C13C14Junction(j) &
+		base:joins(j, p) & base:joins(j, s) & differentFrom(p, s) &
+		Iec60320C13(p) ->
+		Iec60320C14(s)
+	]
+
+	rule c13_c14_junction_conjugates_2 [
+		Iec60320C13C14Junction(j) &
+		base:joins(j, p) & base:joins(j, s) & differentFrom(p, s) &
+		Iec60320C14(s) ->
+		Iec60320C13(p)
+	]
+
+}
