@@ -58,6 +58,22 @@ fact all_presents_chains_limited {
 	all i : Interface | presents_chain_limited[i]
 }
 
+pred junction_at_equal_depth [ j : Junction ] {
+	all disj i1, i2 : j.~is_joined_in | #i1.^~presents = #i2.^~presents
+}
+
+fact all_junctions_at_equal_depth {
+	all j : Junction | junction_at_equal_depth[j]
+}
+
+fun joined_components(j : Junction) : set Component {
+	j.~is_joined_in.^~presents & Component
+}
+
+fact connected_example {
+	all disj j1, j2 : Junction | joined_components[j1] = joined_components[j2]
+}
+
 //
 //
 // Completeness Constraints
@@ -98,11 +114,14 @@ fact all_junctions_join_two {
 
 pred example {}
 
-run example for 8 but exactly 2 Junction
+run example for 10 but exactly 2 Junction
 
-//check all_interfaces_presented for 8 but exactly 2 Junction
+//check all_interfaces_presented for 8
 
-//check all_interfaces_joined for 8 but exactly 2 Junction
+//check all_interfaces_joined for 8
 
-//check all_junctions_join_two for 8 but exactly 2 Junction
+//check all_junctions_join_two for 8
+
+//check all_junctions_at_equal_depth for 8
+
 
