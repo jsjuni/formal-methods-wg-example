@@ -116,12 +116,4 @@ pred example {}
 
 run example for 10 but exactly 2 Junction
 
-//check all_interfaces_presented for 8
-
-//check all_interfaces_joined for 8
-
 check all_junctions_join_two for 8
-
-//check all_junctions_at_equal_depth for 8
-
-
