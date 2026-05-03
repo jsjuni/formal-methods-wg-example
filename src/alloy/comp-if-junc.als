@@ -24,35 +24,7 @@ fact presents_acyclic {
 //
 //
 
-abstract sig Component extends Presenter {}
-
-//
-// Router
-//
-
-sig Router extends Component {}
-
-fact router_presents_lone_c13_male {
-	all r : Router | lone r.(presents :> C13_Male)
-}
-
-fact router_presents_no_c13_female {
-	all r : Router | no r.(presents :> C13_Female)
-}
-
-//
-// PowerCable
-//
-
-sig PowerCable extends Component {}
-
-fact power_cable_lone_c13_female {
-	all c : PowerCable | lone c.(presents :> C13_Female)
-}
-
-fact power_cable_presents_no_c13_male {
-	all c : PowerCable | no c.(presents :> C13_Male)
-}
+sig Component extends Presenter {}
 
 //
 //
@@ -60,92 +32,8 @@ fact power_cable_presents_no_c13_male {
 //
 //
 
-fact interface_presented {
-	all i : Interface | lone presents.i
-}
-
-abstract sig Interface extends Presenter {
+sig Interface extends Presenter {
 	is_joined_in: lone Junction
-}
-
-//
-// Electrical Interface
-//
-
-abstract sig ElectricalInterface extends Interface {}
-
-//
-// US 120 VAC Interface
-//
-
-abstract sig Us120VacInterface extends ElectricalInterface {}
-
-fact us120vac_presented_by_c13 {
-	all i : Us120VacInterface | i.^presents in C13Interface
-}
-
-fact us120vac_joined_in_us120vac {
-	all i : Us120VacInterface | i.is_joined_in in Us120VacJunction
-}
-
-// US 120 VAC Load
-
-sig Us120Vac_Load extends Us120VacInterface {}
-
-fact us120vac_load_presented_by_c13_male {
-	all i : Us120Vac_Load | i.^presents in C13_Male
-}
-
-// US 120 VAC Source
-
-sig Us120Vac_Source extends Us120VacInterface {}
-
-fact us120vac_source_presented_by_c13_female {
-	all i : Us120Vac_Source | i.^presents in C13_Female
-}
-
-//
-// Mechanical Interface
-//
-
-abstract sig MechanicalInterface extends Interface {}
-
-//
-// C13 Interface
-//
-
-abstract sig C13Interface extends MechanicalInterface {}
-
-fact c13_presents_us120vac {
-	all i : C13Interface | i.presents in Us120VacInterface
-}
-
-fact c13_joined_in_c13 {
-	all i : C13Interface | i.is_joined_in in C13Junction
-}
-
-// C13 Male
-
-sig C13_Male extends C13Interface {}
-
-fact c13_male_presents_lone {
-	all i : C13_Male | (lone i.presents)
-}
-
-fact c13_male_presents_us120vac_load {
-	all i : C13_Male | i.presents in Us120Vac_Load
-}
-
-// C13 Female
-
-sig C13_Female extends C13Interface {}
-
-fact c13_female_presents_lone {
-	all i : C13_Female | lone i.presents
-}
-
-fact c13_female_us120vac_source {
-	all i : C13_Female | i.presents in Us120Vac_Source
 }
 
 //
@@ -154,48 +42,20 @@ fact c13_female_us120vac_source {
 //
 //
 
-abstract sig Junction extends Thing {}
-
-// C13 Junction
-
-sig C13Junction extends Junction {}
-
-fact c13_junction_male {
-	all j : C13Junction | lone j.(~is_joined_in :> C13_Male)
-}
-
-fact c13_junction_female {
-	all j : C13Junction | lone j.(~is_joined_in :> C13_Female)
-}
-
-// US 120 VAC Junction
-
-sig Us120VacJunction extends Junction {}
-
-fact us120vac_junction_load {
-	all j : Us120VacJunction | lone j.(~is_joined_in :> Us120Vac_Load)
-}
-
-fact us120vac_junction_source {
-	all j : Us120VacJunction | lone j.(~is_joined_in :> Us120Vac_Source)
-}
+sig Junction extends Thing {}
 
 //
 //
-// Specific Example Constraints
+// Pruning Constraints
 //
 //
 
-fact c13_presented_by {
-	C13Interface.~presents in Router + PowerCable
+pred presents_chain_limited [ i : Interface ] {
+	lone i.^presents
 }
 
-fact c13_presents_one_us120vac {
-	all c : C13Interface | one c.(presents :> Us120VacInterface)
-}
-
-fact us120vac_presented_by {
-	Us120VacInterface.~presents in C13Interface
+fact all_presents_chains_limited {
+	all i : Interface | presents_chain_limited[i]
 }
 
 //
@@ -204,20 +64,45 @@ fact us120vac_presented_by {
 //
 //
 
+pred component_presents [ c : Component ] {
+	some c.presents
+}
+
 fact all_components_present {
-	all c : Component | some c.presents
+	all c : Component | component_presents[c]
+}
+
+pred interface_presented [ i : Interface ] {
+	some presents.i
 }
 
 fact all_interfaces_presented {
-	all i : Interface | one presents.i
+	all i : Interface | interface_presented[i]
+}
+
+pred interface_joined [ i : Interface ] {
+	some i.is_joined_in
 }
 
 fact all_interfaces_joined {
-	all i : Interface | one i.is_joined_in
+	all i : Interface | interface_joined[i]
+}
+
+pred junction_joins_two [ j : Junction ] {
+	#j.~is_joined_in >= 2
 }
 
 fact all_junctions_join_two {
-	all j : Junction | some disj i1, i2 : j.~is_joined_in | i1 != i2
+	all j : Junction | junction_joins_two[j]
 }
 
-run example {} for 16 but exactly 2 Router, exactly 2 PowerCable
+pred example {}
+
+run example for 8 but exactly 2 Junction
+
+//check all_interfaces_presented for 8 but exactly 2 Junction
+
+//check all_interfaces_joined for 8 but exactly 2 Junction
+
+//check all_junctions_join_two for 8 but exactly 2 Junction
+
