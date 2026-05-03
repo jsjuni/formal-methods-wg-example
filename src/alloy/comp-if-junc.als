@@ -108,7 +108,7 @@ pred junction_joins_two [ j : Junction ] {
 	#j.~is_joined_in >= 2
 }
 
-fact all_junctions_join_two {
+assert all_junctions_join_two {
 	all j : Junction | junction_joins_two[j]
 }
 
@@ -120,7 +120,7 @@ run example for 10 but exactly 2 Junction
 
 //check all_interfaces_joined for 8
 
-//check all_junctions_join_two for 8
+check all_junctions_join_two for 8
 
 //check all_junctions_at_equal_depth for 8
 
