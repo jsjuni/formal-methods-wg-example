@@ -50,8 +50,16 @@ sig Junction extends Thing {}
 //
 //
 
+pred presenter_presents_max_3 [ p : Presenter ] {
+	#p.presents <= 3
+}
+
+fact all_presenters_present_max_3 {
+	all p : Presenter | presenter_presents_max_3[p]
+}
+
 pred presents_chain_limited [ i : Interface ] {
-	lone i.^presents
+	#i.^(~presents :> Interface) <= 1
 }
 
 fact all_presents_chains_limited {
@@ -62,7 +70,7 @@ pred junction_at_equal_depth [ j : Junction ] {
 	all disj i1, i2 : j.~is_joined_in | #i1.^~presents = #i2.^~presents
 }
 
-fact all_junctions_at_equal_depth {
+assert all_junctions_at_equal_depth {
 	all j : Junction | junction_at_equal_depth[j]
 }
 
@@ -114,7 +122,7 @@ fact all_junctions_join_two {
 
 pred example {}
 
-run example for 10 but exactly 2 Junction
+run example for 8
 
 //check all_interfaces_presented for 8
 
@@ -122,6 +130,6 @@ run example for 10 but exactly 2 Junction
 
 //check all_junctions_join_two for 8
 
-//check all_junctions_at_equal_depth for 8
+check all_junctions_at_equal_depth for 8 but 4 Interface
 
 
